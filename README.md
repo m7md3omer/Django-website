@@ -1,1 +1,1 @@
-building a simple website to learn django framework
+building a simple website using python with django framework
