@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Parrot</title>
+    <title>{% block title %}Parrot{% endblock %}</title>
     {% load staticfiles %}
     <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -47,7 +47,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                   <a href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add Album</a>
+                   <a href="{% url 'music:album-add' %}"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add Album</a>
                 </li>
                 <li>
                    <a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;Logout &nbsp;</a>
