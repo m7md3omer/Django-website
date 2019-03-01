@@ -1,17 +1,66 @@
 {% extends 'music/base.html' %}
 {% block title %} Album Details {% endblock %}
 {% block body %}
-    <img src="{{ album.album_logo }}", alt="{{ album.album_logo}}">
-    <h1>{{ album.album_name }}</h1>
-    <h3>{{ album.artist }}</h3>
 
-        {% for song in album.song_set.all %}
-            {{ song.song_title }}
-            {% if song.is_favorite %}
-                <img src="http://i.imgur.com/b9b13Rd.png">
-            {% endif %}
-            </label></br>
-        {% endfor %}
+<div class="container">
+    <div class="row">
 
-    </form>
+        <!-- left album info -->
+        <div class="thumbnail col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <a href="{% url 'music:detail' album.id %}">
+                    {% if album.album_logo %}
+                    <img src="{{ album.album_logo }}" class="img-responsive">
+                    <div class="caption">
+                        <h3>{{ album.album_name }} &nbsp; <small>{{ album.genre }}</small></h3>
+                        <h3>{{ album.artist }}</h3>
+                    </div>
+                    {% else %}
+                    <h3>No image to display</h3>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+
+        <!-- right section .. songs info and operations -->
+        <div class="col-sm-8 col-md-9">
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+              <li class="active"><a href="#">View All</a></li>
+              <li><a href="#">Add new song</a></li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>All Songs</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Audio File</th>
+                                <th>Favorite</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for song in album.song_set.all %}
+                                <tr>
+                                    <td>{{ song.song_title }}</td>
+                                    <td>Song Audio file here</td>
+                                    <td>for favorite action</td>
+                                    <td>for the delete</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
 {% endblock %}
