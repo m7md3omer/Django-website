@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parrot</title>
+    {% load staticfiles %}
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet", type="text/css", href="{% static 'music/style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <!--<div class="container-fluid">-->
+
+        <!-- header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'music:index' %}">Parrot</a>
+        </div>
+
+        <!-- items -->
+        <div class="collapse navbar-collapse" id="topNavBar">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{% url 'music:index' %}">
+                        <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;Albums
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp;Songs
+                    </a>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-left" action="#" role="search" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control" value="" name="q">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                   <a href="#"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add Album</a>
+                </li>
+                <li>
+                   <a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;Logout &nbsp;</a>
+                </li>
+            </ul>
+
+        </div>
+
+    <!--</div>-->
+</nav>
+{% block body %}
+{% endblock %}
+</body>
+</html>
