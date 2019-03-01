@@ -8,13 +8,21 @@
 
         <div class="thumbnail col-sm-6 col-md-4" style="max-hight: 2em;">
             <a href="{% url 'music:detail' album.id %}">
-                <img src="{{ album.album_logo }}" alt="{{ album.album_logo }}">
+                <img src="{{ album.album_logo.url }}" alt="{{ album.album_logo }}">
                 <div class="caption">
                     <h3>{{ album.album_name }}</h3>
                     <h4>{{ album.artist }}</h4>
-                      <a href="#" class="btn btn-primary btn-sm" role="button">View Details</a>&nbsp;
-                      <a href="#"><span class="glyphicon glyphicon-trash"></span></a>&nbsp;
-                      <a href="#"><span class="glyphicon glyphicon-star"></span></a>
+                      <a href="{% url 'music:detail' album.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>&nbsp;
+                        <form action="{% url 'music:album-delete' album.id %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="album_id" value="{{ album.id }}">
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-trash"></span>&nbsp;
+                            </button>
+                        </form>
+                      <a class="btn btn-default btn-sm btn-favorite" href="#">
+                          <span class="glyphicon glyphicon-star {% if not album.is_favorite %} active {% endif %} "></span>
+                      </a>
                 </div>
             </a>
         </div>
