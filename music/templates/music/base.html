@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{% url 'music:songs' %}">
                         <span class="glyphicon glyphicon-music" aria-hidden="true"></span>&nbsp;Songs
                     </a>
                 </li>
@@ -46,12 +46,24 @@
             </form>
 
             <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
                 <li>
                    <a href="{% url 'music:album-add' %}"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add Album</a>
                 </li>
                 <li>
-                   <a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;Logout &nbsp;</a>
+                   <a href="{% url 'music:song-create' %}"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add Song</a>
                 </li>
+                <li>
+                   <a href="{% url 'logout' %}"><span class="glyphicon glyphicon-off"></span>&nbsp;Logout &nbsp;</a>
+                </li>
+                {% else %}
+                <li>
+                   <a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Login &nbsp;</a>
+                </li>
+                <li>
+                   <a href="{% url 'register' %}"><span class="glyphicon glyphicon-pencil"></span>&nbsp;Register &nbsp;</a>
+                </li>
+                {% endif %}
             </ul>
 
         </div>

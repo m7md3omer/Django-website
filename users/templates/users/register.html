@@ -1,0 +1,33 @@
+{% extends 'music/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Register {% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <!-- the action is left empty intentionly because it is handled
+                        in the Album model (get_absolute_url) method which goes to the same created album details -->
+                        <h2>Create a New Account</h2>
+                        {{ form|crispy }}
+                        <div class="form-group">
+                            <button class="btn btn-info" type="submit">Sign Up</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="border-top pt-3">
+                        <small class="text-muted">
+                            Already have an account? <a class="ml-2" href="#">Sign In</a>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

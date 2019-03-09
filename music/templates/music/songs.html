@@ -1,0 +1,30 @@
+{% extends 'music/base.html' %}
+
+{% block body %}
+
+<div class="container" style="width=70%">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Album</th>
+                <th>Audio File</th>
+                <th>Favorite</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in all_songs %}
+                <tr>
+                    <td>{{ song.song_title }}</td>
+                    <td>{{ song.album.album_name }}</td>
+                    <td>Song Audio file here</td>
+                    <td>for favorite action</td>
+                    <td>for the delete</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

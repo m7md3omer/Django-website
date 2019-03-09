@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
-from .models import Album
+from .models import Album, Song
 from .forms import UserForm
 
 
@@ -14,6 +14,14 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Album.objects.all()
+
+
+class SongsView(generic.ListView):
+    template_name = 'music/songs.html'
+    context_object_name = 'all_songs'
+
+    def get_queryset(self):
+        return Song.objects.all()
 
 
 class DetailView(generic.DetailView):
@@ -69,5 +77,10 @@ class UserFormView(View):
                     login(request, user)
                     return redirect('music:index')
         return render(request, self.template_name, {'form': form})
+
+
+class SongCreate(CreateView):
+    model = Song
+    fields = ['file_type', 'song_title', 'is_favorite', 'album']
 
 

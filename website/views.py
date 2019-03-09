@@ -1,6 +1,3 @@
 from django.http import HttpResponse
-
-
-def index(request):
-    return HttpResponse("<h1>this is a heading</h1>")
+from django.shortcuts import render
 

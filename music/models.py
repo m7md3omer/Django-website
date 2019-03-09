@@ -6,7 +6,7 @@ class Album(models.Model):
     artist = models.CharField(max_length=250)
     album_name = models.CharField(max_length=500)
     genre = models.CharField(max_length=100)
-    album_logo = models.FileField()
+    image = models.ImageField(default='profile_pics/default.jpg', upload_to='profile_pics')
 
     def __str__(self):
         return str(self.artist) + "  " + str(self.album_name)
@@ -23,3 +23,6 @@ class Song(models.Model):
 
     def __str__(self):
         return self.song_title
+
+    def get_absolute_url(self):
+        return reverse('music:index')

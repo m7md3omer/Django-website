@@ -6,9 +6,9 @@
 
     {% for album in all_albums%}
 
-        <div class="thumbnail col-sm-6 col-md-4" style="max-hight: 2em;">
+        <div class="thumbnail col-sm-4 col-md-3" style="max-hight: 2em;">
             <a href="{% url 'music:detail' album.id %}">
-                <img src="{{ album.album_logo.url }}" alt="{{ album.album_logo }}">
+                <img src="{{ album.image.url }}" alt="{{ album.image.url }}">
                 <div class="caption">
                     <h3>{{ album.album_name }}</h3>
                     <h4>{{ album.artist }}</h4>

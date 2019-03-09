@@ -1,5 +1,5 @@
 {% extends 'music/base.html' %}
-{% block title %} Register {% endblock %}
+{% block title %} Album Details {% endblock %}
 {% block body %}
 
 <div class="container-fluid">
@@ -7,9 +7,9 @@
         <div class="col-sm-12 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <h3>Add a New Song:</h3><br/>
                     <!-- the action is left empty intentionly because it is handled
                     in the Album model (get_absolute_url) method which goes to the same created album details -->
-                    <h2>Create a New Account</h2>
                     <form class="form form-horizontal" action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {% include 'music/form-template.html' %}
