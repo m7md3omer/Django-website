@@ -28,6 +28,7 @@
               <li class="active"><a href="#">View All</a></li>
               <li><a class="btn btn-default" href="{% url 'music:album-update' album.id %}">Edit Album <span class="glyphicon glyphicon-edit"></span></a></li>
               <li><a class="btn btn-default" href="{% url 'music:song-create' album.id %}">Add new song <span class="glyphicon glyphicon-plus"></span></a></li>
+              <li><a class="btn btn-danger" href="{% url 'music:album-delete' album.id %}">Delete Album <span class="glyphicon glyphicon-trash"></span></a></li>
             </ul>
 
             <div class="panel panel-default">
@@ -49,8 +50,12 @@
                             {% for song in album.song_set.all %}
                                 <tr>
                                     <td>{{ song.song_title }}</td>
-                                    <td>Song Audio file here</td>
-                                    <td>for favorite action</td>
+                                    <td><a class="btn btn-success" href="{{ song.file.url }}"><span class="glyphicon glyphicon-play-circle"></span></a></td>
+                                    <td>
+                                        <a href="#" class="btn-favorite">
+                                            <span class="glyphicon glyphicon-star {% if song.is_favorite %}active{% endif %}"></span>
+                                        </a>
+                                    </td>
                                     <td>for the delete</td>
                                 </tr>
                             {% endfor %}

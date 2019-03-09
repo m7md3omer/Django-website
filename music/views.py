@@ -31,12 +31,11 @@ class DetailView(generic.DetailView):
 
 class AlbumCreate(CreateView):
     model = Album
-    fields = ['artist', 'album_name', 'genre', 'album_logo']
+    fields = ['artist', 'album_name', 'genre', 'image']
 
 
 class AlbumUpdate(UpdateView):
     model = Album
-    fields = ['artist', 'album_name', 'genre', 'album_logo']
 
 
 class AlbumDelete(DeleteView):
@@ -81,6 +80,13 @@ class UserFormView(View):
 
 class SongCreate(CreateView):
     model = Song
-    fields = ['file_type', 'song_title', 'is_favorite', 'album']
+    fields = ['file_type', 'song_title', 'is_favorite', 'file']
+
+    def form_valid(self, form):
+        form.instance.album = Album.objects.get(pk=self.kwargs['pk'])
+        print(form.instance.album)
+        return super().form_valid(form)
 
 
+class DeleteAlbum(DeleteView):
+    model = Album
